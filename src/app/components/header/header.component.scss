@@ -1,0 +1,32 @@
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header .logo-conteiner{
+    background: black;
+    padding: 24px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+header .text-conteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header .text-conteiner h1{
+    font-size: 34px;
+    color: var(--dark-grey);
+}
+
+header .text-conteiner p{
+    color: var(--light-grey);
+}
