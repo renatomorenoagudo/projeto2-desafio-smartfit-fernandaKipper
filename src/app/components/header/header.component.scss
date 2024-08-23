@@ -3,6 +3,10 @@ header{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    min-width: 100px;
+
+    gap:32px;
 }
 
 header .logo-conteiner{
@@ -15,11 +19,17 @@ header .logo-conteiner{
     justify-content: center;
 }
 
+header .logo-conteiner img{
+    height: 100px;
+}
+
 header .text-conteiner{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
 header .text-conteiner h1{
@@ -29,4 +39,20 @@ header .text-conteiner h1{
 
 header .text-conteiner p{
     color: var(--light-grey);
+}
+
+header .text-conteiner .heading{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    margin-bottom: 24px;
+    gap: 14px;
+}
+
+header .text-conteiner .heading .heading-border{
+    height: 12px;
+    width: 40%;
+    background-color: var(--dark-grey);
 }
