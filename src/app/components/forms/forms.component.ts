@@ -17,29 +17,33 @@ export class FormsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private unitService: GetUnitsService
+    //private unitService: GetUnitsService
     //private filterUnitsService: FilterUnitsService
     ) { }
 
   ngOnInit(): void {
-    
-    this.unitService.getAllUnits().subscribe(data =>console.log(data)); 
-     // this.results = date;
-      //this.filteredResults = date;
-    //});
     this.formGroup = this.formBuilder.group({
       hour: '',
-      showClosed: false
+      showClosed: true
+    });
+    this.unitService.getAllUnits().subscribe(data => { 
+      this.results = data.locations;
+      this.filteredResults = data.locations; 
     })
   }
 
   onSubmit(): void {
-    console.log(this.formGroup.value)
-    let { showClosed, hour } = this.formGroup.value
+    if (!this.formGroup.value.showClosed){
+      this.filteredResults = this.results.filter(location=>location.opened===true)
+    }else {
+      this.filteredResults=this.results;
+    }
+    //console.log(this.formGroup.value)
+    //let { showClosed, hour } = this.formGroup.value
     //this.filteredResults = this.filterUnitsService.filter(this.results, showClosed, hour);
     //this.unitsService.setFilteredUnits(this.filteredResults);
 
-    this.submitEvent.emit();
+    //this.submitEvent.emit();
   }
 
   onClean(): void {
