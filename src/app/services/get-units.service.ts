@@ -21,21 +21,22 @@ export class GetUnitsService {
       this.allUnitsSubject.next(data.locations);
       this.filteredUnits = data.locations;
     })
-   }
-  
+   
+  }
   getAllUnits(): Observable<Location[]>{
     return this.allUnits$;
   }
 
   getFilteredUnits(){
-    return this.filteredResults;
+    return this.filteredUnits;
   }
   
-  setFilteredUnits(value: Location[]):{
+  setFilteredUnits(value: Location[]){
     this.filteredUnits = value;
   }
   
-
-
-
 }
+
+
+
+
