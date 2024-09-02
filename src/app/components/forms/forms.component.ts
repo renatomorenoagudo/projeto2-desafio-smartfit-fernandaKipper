@@ -1,8 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { GetUnitsService } from '../../services/get-units.service';
+import { FilterUnitsService } from '../../services/filter-units.service';
 //import { FilterUnitsService } from 'src/app/services/filter-units.service';
 //import { GetUnitsService } from 'src/app/services/get-units.service';
 //import { Location } from 'src/app/types/location.interface';
+
 
 @Component({
   selector: 'app-forms',
@@ -16,33 +19,22 @@ export class FormsComponent implements OnInit {
   formGroup!: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
-    //private unitService: GetUnitsService
-    //private filterUnitsService: FilterUnitsService
-    ) { }
+    private formBuilder: FormBuilder, 
+    private unitService: GetUnitsService,
+    private filterUnitsService: FilterUnitsService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.formGroup = this.formBuilder.group({
       hour: '',
       showClosed: true
     });
-    this.unitService.getAllUnits().subscribe(data => { 
-      this.results = data.locations;
-      this.filteredResults = data.locations; 
-    })
+    this.unitService.getAllUnits()
   }
 
   onSubmit(): void {
-    if (!this.formGroup.value.showClosed){
-      this.filteredResults = this.results.filter(location=>location.opened===true)
-    }else {
-      this.filteredResults=this.results;
-    }
-    //console.log(this.formGroup.value)
-    //let { showClosed, hour } = this.formGroup.value
-    //this.filteredResults = this.filterUnitsService.filter(this.results, showClosed, hour);
+    let { showClosed, hour } = this.formGroup.value;
+    this.filteredResults = this.filterUnitsService.filter(this.results, showClosed, hour);
     //this.unitsService.setFilteredUnits(this.filteredResults);
-
     //this.submitEvent.emit();
   }
 
