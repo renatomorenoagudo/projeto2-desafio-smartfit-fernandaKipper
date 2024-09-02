@@ -28,18 +28,23 @@ export class FormsComponent implements OnInit {
       hour: '',
       showClosed: true
     });
-    this.unitService.getAllUnits()
+
+    this.unitService.getAllUnits().subscribe(data =>{
+      this.results = data;
+      this.filteredResults = data;
+    });
   }
 
   onSubmit(): void {
     let { showClosed, hour } = this.formGroup.value;
     this.filteredResults = this.filterUnitsService.filter(this.results, showClosed, hour);
-    //this.unitsService.setFilteredUnits(this.filteredResults);
+    this.unitsService.setFilteredUnits(this.filteredResults);
     //this.submitEvent.emit();
   }
 
   onClean(): void {
     this.formGroup.reset();
   }
+
 
 }

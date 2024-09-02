@@ -26,4 +26,16 @@ export class GetUnitsService {
   getAllUnits(): Observable<Location[]>{
     return this.allUnits$;
   }
+
+  getFilteredUnits(){
+    return this.filteredResults;
+  }
+  
+  setFilteredUnits(value: Location[]):{
+    this.filteredUnits = value;
+  }
+  
+
+
+
 }
